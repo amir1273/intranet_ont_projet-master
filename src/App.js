@@ -28,50 +28,44 @@ const App = () => {
   //     .catch((err => console.log(err)))
 
   // }, []);
-  const [role, setRole] = useState("");
-  useEffect(() => {
-    setRole(localStorage.getItem("role"));
-    console.log(role);
-    return () => {};
-  }, [role]);
+  // const [role, setRole] = useState("");
+  // useEffect(() => {
+  //   setRole(localStorage.getItem("role"));
+  //   console.log(role);
+  //   return () => {};
+  // }, [role]);
 
   return (
     <BrowserRouter>
       <Routes>
-        {role === "ADMIN" && (
-          <>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/*" element={<Dashboard />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/AjoutEmployes" element={<AjoutEmp />} />
-            <Route path="/ModifierEmployes" element={<ModifierEmp />} />
-            <Route path="/RechercherEmployes" element={<RechercherEmp />} />
-            <Route path="/SupprimerEmployes" element={<SupprimerEmp />} />
-            <Route
-              path="/GestionCongesAdmin"
-              element={<GestionCongesAdmin />}
-            />
-            <Route path="/GestionEmpAdmin" element={<GestionEmpAdmin />} />
-            <Route path="/GestionPretsAdmin" element={<GestionPretsAdmin />} />
-          </>
+        {/* {role === "ADMIN" && (
+          <> */}
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/*" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/AjoutEmployes" element={<AjoutEmp />} />
+        <Route path="/ModifierEmployes" element={<ModifierEmp />} />
+        <Route path="/RechercherEmployes" element={<RechercherEmp />} />
+        <Route path="/SupprimerEmployes" element={<SupprimerEmp />} />
+        <Route path="/GestionCongesAdmin" element={<GestionCongesAdmin />} />
+        <Route path="/GestionEmpAdmin" element={<GestionEmpAdmin />} />
+        <Route path="/GestionPretsAdmin" element={<GestionPretsAdmin />} />
+        {/* </>
         )}
         {role === "USER" && (
-          <>
-            <Route path="/" element={<Accueil />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/Assurance" element={<Assurances />} />
-            <Route path="/GestionConges" element={<GestionCongés />} />
-            <Route path="/GestionPrets" element={<GestionPrêts />} />
-            <Route path="/Profil" element={<Profil />} />
-            <Route
-              path="/AjoutDemandeConges"
-              element={<AjoutDemandeConges />}
-            />
-            <Route path="/ModifierProfil" element={<ModifierProfil />} />
-            <Route path="/*" element={<Accueil />} />
-          </>
-        )}
+          <> */}
+        <Route path="/" element={<Accueil />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/Assurance" element={<Assurances />} />
+        <Route path="/GestionConges" element={<GestionCongés />} />
+        <Route path="/GestionPrets" element={<GestionPrêts />} />
+        <Route path="/Profil" element={<Profil />} />
+        <Route path="/AjoutDemandeConges" element={<AjoutDemandeConges />} />
+        <Route path="/ModifierProfil" element={<ModifierProfil />} />
+        <Route path="/*" element={<Accueil />} />
+        {/* </>
+        )} */}
       </Routes>
     </BrowserRouter>
   );
