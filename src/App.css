@@ -1,0 +1,75 @@
+.userInfo {
+    margin-right: 2rem;
+}
+
+.userInfo span {
+    padding-left: 3rem;
+}
+
+.userInfo span i {
+    cursor: pointer;
+    color: #d1e8e2;
+    background-color: black;
+    border: 1px solid #d1e8e2;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    padding: 0.7rem;
+}
+
+.userInfo span i:hover {
+    cursor: pointer;
+    color: black;
+    background-color: #d1e8e2;
+    border: 1px solid black;
+}
+
+.buttonC input {
+    width: 100%;
+    height: 100%;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    padding: 5px;
+}
+
+.d-block {
+    height: 450px;
+    color: #fff;
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
+.carousel-item {
+    transition: transform 2.6s ease-in-out;
+}
+
+.carousel-item {
+    opacity: 0;
+    transition-duration: .3s;
+    transition-property: opacity;
+}
+
+.carousel-item.active,
+.carousel-item-next.carousel-item-left,
+.carousel-item-prev.carousel-item-right {
+    opacity: 1;
+}
+
+.active.carousel-item-left,
+.active.carousel-item-right {
+    opacity: 0;
+}
+
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active,
+.active.carousel-item-left,
+.active.carousel-item-prev {
+    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
+}

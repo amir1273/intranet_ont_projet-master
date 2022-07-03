@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&amp;display=swap');
+
+.content-table {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-right: auto;
+    margin-left: auto;
+    position: unset;
+}
+
+.content-table thead tr {
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table thead tr:hover {
+    /* transform: scale(0.99); */
+    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid #71b7e6;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #9b59b6;
+}
+
+.content-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.button {
+    height: 45px;
+    margin: 35px 0;
+    position: unset;
+
+
+}
+
+.button input {
+    height: 100%;
+    width: 25%;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+
+}
+
+.buttonB {
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    color: #fff;
+}
+
+
+.buttonB:hover {
+    /* transform: scale(0.99); */
+    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+    color: #fff;
+}
