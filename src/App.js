@@ -18,54 +18,77 @@ import GestionCongesAdmin from "./pages/AdminPages/GestionCongesAdmin";
 import AjoutDemandeConges from "./pages/AjoutDemandeConges";
 import ModifierProfil from "./pages/ModifierProfil";
 import Dashboard from "./pages/AdminPages/Dashboard";
+import axios from "axios";
 // import axios from 'axios';
 
 const App = () => {
-  // const [data, setData] = useState([])
-  // useEffect(() => {
-  //   axios.get("http://localhost:8080/employees")
-  //     .then(r => { console.log(r.data); setData(r.data) })
-  //     .catch((err => console.log(err)))
+  const [username, setUsername] = useState(localStorage.getItem("username"));
+  const [token, setToken] = useState(localStorage.getItem("token"))
+  const [user, setUser] = useState("");
+  const [role, setRole] = useState("");
+  useEffect(() => {
+    getUserInfo()
 
-  // }, []);
-  // const [role, setRole] = useState("");
-  // useEffect(() => {
-  //   setRole(localStorage.getItem("role"));
-  //   console.log(role);
-  //   return () => {};
-  // }, [role]);
+    return () => {
+
+    }
+  }, [token, username, role])
+
+  const getUserInfo = () => {
+    const url = `http://localhost:8080/api/user/info/${username}`;
+    let options = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      url,
+    };
+    axios(options)
+      .then(({ data }) => {
+        console.log(data);
+        setUser(data);
+        setRole(data.account.roles[0].name);
+        console.log("role: ", role);
+        localStorage.setItem("user", JSON.stringify(data));
+        localStorage.setItem("role", role);
+      })
+      .catch((er) => {
+        console.log("no data sorry ", er);
+      });
+  }
 
   return (
     <BrowserRouter>
       <Routes>
-        {/* {role === "ADMIN" && (
-          <> */}
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/*" element={<Dashboard />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/AjoutEmployes" element={<AjoutEmp />} />
-        <Route path="/ModifierEmployes" element={<ModifierEmp />} />
-        <Route path="/RechercherEmployes" element={<RechercherEmp />} />
-        <Route path="/SupprimerEmployes" element={<SupprimerEmp />} />
-        <Route path="/GestionCongesAdmin" element={<GestionCongesAdmin />} />
-        <Route path="/GestionEmpAdmin" element={<GestionEmpAdmin />} />
-        <Route path="/GestionPretsAdmin" element={<GestionPretsAdmin />} />
-        {/* </>
+
+        {role === "ADMIN" && (
+          <>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/*" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/AjoutEmployes" element={<AjoutEmp />} />
+            <Route path="/ModifierEmployes" element={<ModifierEmp />} />
+            <Route path="/RechercherEmployes" element={<RechercherEmp />} />
+            <Route path="/SupprimerEmployes" element={<SupprimerEmp />} />
+            <Route path="/GestionCongesAdmin" element={<GestionCongesAdmin />} />
+            <Route path="/GestionEmpAdmin" element={<GestionEmpAdmin />} />
+            <Route path="/GestionPretsAdmin" element={<GestionPretsAdmin />} />
+          </>
         )}
         {role === "USER" && (
-          <> */}
-        <Route path="/" element={<Accueil />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/Assurance" element={<Assurances />} />
-        <Route path="/GestionConges" element={<GestionCongés />} />
-        <Route path="/GestionPrets" element={<GestionPrêts />} />
-        <Route path="/Profil" element={<Profil />} />
-        <Route path="/AjoutDemandeConges" element={<AjoutDemandeConges />} />
-        <Route path="/ModifierProfil" element={<ModifierProfil />} />
-        <Route path="/*" element={<Accueil />} />
-        {/* </>
-        )} */}
+          <>
+            <Route path="/" element={<Accueil />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/Assurance" element={<Assurances />} />
+            <Route path="/GestionConges" element={<GestionCongés />} />
+            <Route path="/GestionPrets" element={<GestionPrêts />} />
+            <Route path="/Profil" element={<Profil />} />
+            <Route path="/AjoutDemandeConges" element={<AjoutDemandeConges />} />
+            <Route path="/ModifierProfil" element={<ModifierProfil />} />
+            <Route path="/*" element={<Accueil />} />
+          </>
+        )}
       </Routes>
     </BrowserRouter>
   );

@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from '../components/Logo';
 
 const ModifierProfil = () => {
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+    useEffect(() => {
+        setUser(JSON.parse(localStorage.getItem("user")));
+        console.log(user);
+
+        return () => { };
+    }, []);
+
     return (
         <div>
             <Logo />
             <h1>Profil</h1>
             <div className="containerP">
-                <div className="title">Modifier Profile Employé : </div>
+                <div className="title">Modifier Profil Employé : </div>
                 <div className="content">
                     <div class="profile-pic">
                         <label class="-label" for="file">
@@ -21,43 +29,57 @@ const ModifierProfil = () => {
                         <div className="user-details">
                             <div className="output-box">
                                 <span className="details">Matricule Employé :</span>
-                                <span className='output' name="matricule" >0819</span>
+                                <span className='output' name="matricule" >{user.matricule}</span>
                             </div>
                             <div className="output-box">
                                 <span className="details">Nom et Prénom :</span>
-                                <span className='output' name="nomComplet">Nader Mahjoubi</span>
+                                <span className='output' name="nomComplet">{user.nomComplet}</span>
                             </div>
                             <div className="output-box">
                                 <span className="details">CIN :</span>
-                                <span className='output' name="cin" >05219086</span>
+                                <span className='output' name="cin" >{user.cin}
+                                </span>
                             </div>
                             <div className="output-box">
                                 <span className="details">CNRPS :</span>
-                                <span className='output' name="cnrps">0074035248</span>
+                                <span className="output" name="cnrps">
+                                    {user.cnrps}
+                                </span>
                             </div>
                             <div className="output-box">
                                 <span className="details">Numéro d'Assurance :</span>
-                                <span className='output' name="numAssurance">484</span>
+                                <span className="output" name="numAssurance">
+                                    {user.numAssurance}
+                                </span>
                             </div>
                             <div className="output-box">
                                 <span className="details">Date de Naissance :</span>
-                                <span className='output' name="dateNaissance">25/07/1973</span>
+                                <span className="output" name="dateNaissance">
+                                    {user.dateDeNaissance}
+                                </span>
                             </div>
                             <div className="output-box">
                                 <span className="details">Date d'Embauche :</span>
-                                <span className='output' name="matricule">01/10/1999</span>
+                                <span className="output" name="matricule">
+                                    {user.dateEmbauche}
+                                </span>
                             </div>
                             <div className="output-box">
                                 <span className="details">Fonction :</span>
-                                <span className='output' name="fonction">Technicien Principal</span>
+                                <span className="output" name="fonction">
+                                    {user.fonction}
+                                </span>
                             </div>
                             <div className="output-box">
                                 <span className="details">Solde Congé :</span>
-                                <span className='output' name="soldeConge">27.5</span>
+                                <span className="output" name="soldeConge">
+                                    {user.soldeConge}
+                                </span>
                             </div>
                             <div className="output-box">
                                 <span className="details">Genre :</span>
-                                <span className='output' name="genre">Homme</span>
+                                <span className="output" name="genre">
+                                    {user.genre}</span>
                             </div>
                             <div className="input-box">
                                 <span className="details">Numéro de Téléphone :</span>

@@ -1,15 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 const Logo = () => {
   const navigate = useNavigate();
+  const [username, setUsername] = useState(localStorage.getItem("username"));
+  const [token, setToken] = useState(localStorage.getItem("token"))
+  const [user, setUser] = useState("");
   const [role, setRole] = useState("");
   useEffect(() => {
-    setRole(localStorage.getItem("role"));
-    console.log(role);
-    return () => {};
-  }, [role]);
+    getUserInfo()
+
+    return () => {
+
+    }
+  }, [token, username, role])
+
+  const getUserInfo = () => {
+    const url = `http://localhost:8080/api/user/info/${username}`;
+    let options = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      url,
+    };
+    axios(options)
+      .then(({ data }) => {
+        console.log(data);
+        setUser(data);
+        setRole(data.account.roles[0].name);
+        console.log("role: ", role);
+        localStorage.setItem("user", JSON.stringify(data));
+        localStorage.setItem("role", role);
+      })
+      .catch((er) => {
+        console.log("no data sorry ", er);
+      });
+  }
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");

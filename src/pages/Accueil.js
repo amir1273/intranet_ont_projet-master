@@ -5,43 +5,41 @@ import { useNavigate } from "react-router";
 import Navigation from "../components/Navigation";
 
 const Accueil = () => {
-  const [token, setToken] = useState();
-  const [username, setUsername] = useState("");
-  const [user, setUser] = useState({});
+
+  const [username, setUsername] = useState(localStorage.getItem("username"));
+  const [token, setToken] = useState(localStorage.getItem("token"))
+  const [user, setUser] = useState("");
   const [role, setRole] = useState("");
-  const navigate = useNavigate();
   useEffect(() => {
-    const t = localStorage.getItem("token");
-    setUsername(localStorage.getItem("username"));
-    console.log("token ?", t);
+    getUserInfo()
 
-    if (t) {
-      setToken(t);
+    return () => {
 
-      const url = `http://localhost:8080/api/user/info/${username}`;
-      let options = {
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-        url,
-      };
-      axios(options)
-        .then(({ data }) => {
-          console.log(data);
-          setUser(data);
-          setRole(data.account.roles[0].name);
-          console.log("role: ", role);
-          localStorage.setItem("user", JSON.stringify(data));
-          localStorage.setItem("role", role);
-        })
-        .catch((er) => {
-          console.log("no data sorry ", er);
-        });
-    } else navigate("/login");
-    return () => {};
-  }, [token, role]);
+    }
+  }, [token, username, role])
 
+  const getUserInfo = () => {
+    const url = `http://localhost:8080/api/user/info/${username}`;
+    let options = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      url,
+    };
+    axios(options)
+      .then(({ data }) => {
+        console.log(data.account.roles[0].name);
+        setUser(data);
+        setRole(data.account.roles[0].name);
+        console.log("role: ", role);
+        localStorage.setItem("user", JSON.stringify(data));
+        localStorage.setItem("role", role);
+      })
+      .catch((er) => {
+        console.log("no data sorry ", er);
+      });
+  }
   return (
     <div>
       <Logo />

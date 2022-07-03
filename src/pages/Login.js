@@ -8,6 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [token, setToken] = useState(null);
   const [error, setError] = useState(false);
+
   // const user = { username, password }
   const navigate = useNavigate();
 
@@ -17,7 +18,7 @@ const Login = () => {
     if (t) {
       navigate("/");
     }
-    return () => {};
+    return () => { };
   }, [token]);
 
   const handleLogin = (e) => {
@@ -38,9 +39,7 @@ const Login = () => {
         console.log(data);
         localStorage.setItem("token", data.access_token);
         localStorage.setItem("username", username);
-
         setToken(data.access_token);
-        // getUserInfo();
         navigate("/");
       })
       .catch((er) => {
@@ -93,7 +92,7 @@ const Login = () => {
               type="submit"
               value="Se connecter"
               onClick={handleLogin}
-              // onClick={() => navigate("/")}
+            // onClick={() => navigate("/")}
             />
           </div>
         </form>

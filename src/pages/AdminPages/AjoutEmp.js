@@ -1,12 +1,23 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from '../../components/Logo';
 import NavigationAdmin from '../../components/NavigationAdmin';
+import { useNavigate } from "react-router";
+
 import '../../styles/components/_AjoutEmp.css'
 const AjoutEmp = () => {
+    const [token, setToken] = useState(null);
+    const [error, setError] = useState(false);
     const [employee, setEmployee] = useState({
         "fonction": "TechnicienPrincipal"
     })
+    const navigate = useNavigate();
+    useEffect(() => {
+        const t = localStorage.getItem("token");
+        setToken(t);
+
+        return () => { };
+    }, [token]);
     const handleAddEmployee = (e) => {
         const value = e.target.value;
         setEmployee(
@@ -18,10 +29,26 @@ const AjoutEmp = () => {
     }
     const addEmployee = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8080/api/employee/add/", employee)
-            .then(r => console.log(r.data))
-            .catch(error => console.log(error))
+        const url = "http://localhost:8080/api/employee/add/";
+        let options = {
+            method: "POST",
+            headers: { "Authorization": `Bearer ${token}` },
+            data: employee,
+            url,
+        };
+        axios(options)
+            .then(({ data }) => {
+                console.log(data);
+
+
+                navigate("/GestionEmpAdmin");
+            })
+            .catch((er) => {
+                setError(true);
+                console.log("no data sorry ", er);
+            });
     }
+
     return (
         <div>
             <Logo />
@@ -93,6 +120,9 @@ const AjoutEmp = () => {
                                     <span className="dot two"></span>
                                     <span className="gender">Femme</span>
                                 </label>
+                                {
+                                    error && <label>error</label>
+                                }
                             </div>
                         </div>
                         <div className="button">
