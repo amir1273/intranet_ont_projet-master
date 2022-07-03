@@ -55,7 +55,7 @@ const Navigation = () => {
                             <li>Gestion des Congés</li>
                         </NavLink>
                         <NavLink
-                            to="/GestionPrêts"
+                            to="/GestionPrets"
                             className={(nav) => (nav.isActive ? "nav-active" : "")}
                         >
                             <li>Gestion des Prêts</li>
@@ -64,7 +64,7 @@ const Navigation = () => {
                 ) : (
                     <>
                         <NavLink
-                            to="/GestionEmpAdmin"
+                            to="/dashboard"
                             className={(nav) => (nav.isActive ? "nav-active" : "")}
                         >
                             <li>Administrateur</li>

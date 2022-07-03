@@ -44,8 +44,8 @@ const Logo = () => {
     localStorage.removeItem("username");
     localStorage.removeItem("user");
     localStorage.removeItem("role");
-
     navigate("/login");
+
   };
   return (
     <div>
@@ -66,8 +66,7 @@ const Logo = () => {
                 <span>
                   <NavLink
                     to="/Profil"
-                    className={(nav) => (nav.isActive ? "nav-active" : "")}
-                  >
+                    className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <i class="fa fa-user"></i>
                   </NavLink>
                 </span>

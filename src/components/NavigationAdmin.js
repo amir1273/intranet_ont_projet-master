@@ -6,9 +6,7 @@ const NavigationAdmin = () => {
         <div className="navigation">
             <ul>
                 <NavLink
-                    to="/dashboard"
-                    className={(nav) => (nav.isActive ? "nav-active" : "")}
-                >
+                    to="/dashboard" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <li>Dashboard</li>
                 </NavLink>
                 <NavLink to="/GestionEmpAdmin" className={(nav) => (nav.isActive ? "nav-active" : "")}>
@@ -17,8 +15,7 @@ const NavigationAdmin = () => {
                 <NavLink to="/GestionCongesAdmin" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <li>Gestion des Congés</li>
                 </NavLink>
-                <NavLink
-                    to="/GestionPretsAdmin" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                <NavLink to="/GestionPretsAdmin" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <li>Gestion des Prêts</li>
                 </NavLink>
             </ul>
