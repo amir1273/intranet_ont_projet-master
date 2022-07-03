@@ -13,6 +13,8 @@ const Logo = () => {
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
+    localStorage.removeItem("user");
+    localStorage.removeItem("role");
 
     navigate("/login");
   };
