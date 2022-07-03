@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router";
 
 const Logo = () => {
   const navigate = useNavigate();
+  const [role, setRole] = useState("");
+  useEffect(() => {
+    setRole(localStorage.getItem("role"));
+    console.log(role);
+    return () => {};
+  }, [role]);
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
@@ -21,17 +27,22 @@ const Logo = () => {
         </NavLink>
         <div>
           <div className="userInfo">
-            <span>
-              <i class="fa fa-bell"></i>
-            </span>
-            <span>
-              <NavLink
-                to="/Profil"
-                className={(nav) => (nav.isActive ? "nav-active" : "")}
-              >
-                <i class="fa fa-user"></i>
-              </NavLink>
-            </span>
+            {role === "USER" && (
+              <>
+                <span>
+                  <i class="fa fa-bell"></i>
+                </span>
+                <span>
+                  <NavLink
+                    to="/Profil"
+                    className={(nav) => (nav.isActive ? "nav-active" : "")}
+                  >
+                    <i class="fa fa-user"></i>
+                  </NavLink>
+                </span>
+              </>
+            )}
+
             <span onClick={logout}>
               <i class="fa fa-arrow-right-from-bracket"></i>
             </span>
