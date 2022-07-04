@@ -6,6 +6,8 @@ import qs from "qs";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+
   const [token, setToken] = useState(null);
   const [error, setError] = useState(false);
 
@@ -16,7 +18,7 @@ const Login = () => {
     const t = localStorage.getItem("token");
     setToken(t);
     if (t) {
-      navigate("/Accueil");
+      navigate("/");
     }
     return () => { };
   }, [token]);
@@ -41,12 +43,11 @@ const Login = () => {
         localStorage.setItem("username", username);
         setToken(data.access_token);
         window.location.reload(false);
-        navigate("/Accueil");
+        navigate("/");
       })
       .catch((er) => {
         setError(true);
         console.log("no data sorry ", er);
-        navigate("/")
       });
   };
 

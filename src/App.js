@@ -59,12 +59,12 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/*" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         {role === "ADMIN" && (
           <>
-            <Route path="/Accueil" element={<Dashboard />} />
+            <Route path="/" element={<Dashboard />} />
             <Route path="/*" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/AjoutEmployes" element={<AjoutEmp />} />
             <Route path="/ModifierEmployes" element={<ModifierEmp />} />
             <Route path="/RechercherEmployes" element={<RechercherEmp />} />
@@ -76,7 +76,7 @@ const App = () => {
         )}
         {role === "USER" && (
           <>
-            <Route path="/Accueil" element={<Accueil />} />
+            <Route path="/" element={<Accueil />} />
             <Route path="/GestionConges" element={<GestionCongés />} />
             <Route path="/GestionPrets" element={<GestionPrêts />} />
             <Route path="/Profil" element={<Profil />} />
