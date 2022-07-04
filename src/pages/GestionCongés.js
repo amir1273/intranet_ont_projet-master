@@ -18,17 +18,24 @@ const GestionCongés = () => {
                         <th>Date Fin</th>
                         <th>Période</th>
                         <th>Décision</th>
+                        <th>Action</th>
 
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Domenic</td>
-                        <td>88,110</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>Statut</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <NavLink to="/ModifierConge" title="Modifier">
+                                <i class="material-icons">&#xE8B8;</i>
+                            </NavLink>
+                            <a href="/SupprimerEmployes" className="delete" title="Delete"><i class="material-icons">&#xE5C9;</i></a>
+                        </td>
                     </tr>
                 </tbody>
                 <tfoot>

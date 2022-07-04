@@ -17,6 +17,7 @@ import GestionEmpAdmin from "./pages/AdminPages/GestionEmpAdmin";
 import GestionCongesAdmin from "./pages/AdminPages/GestionCongesAdmin";
 import AjoutDemandeConges from "./pages/AjoutDemandeConges";
 import ModifierProfil from "./pages/ModifierProfil";
+import ModifierConge from "./pages/ModifierConge";
 import Dashboard from "./pages/AdminPages/Dashboard";
 import axios from "axios";
 // import axios from 'axios';
@@ -56,17 +57,15 @@ const App = () => {
         console.log("no data sorry ", er);
       });
   }
-
   return (
     <BrowserRouter>
       <Routes>
-
+        <Route path="/login" element={<Login />} />
         {role === "ADMIN" && (
           <>
             <Route path="/" element={<Dashboard />} />
             <Route path="/*" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/login" element={<Login />} />
             <Route path="/AjoutEmployes" element={<AjoutEmp />} />
             <Route path="/ModifierEmployes" element={<ModifierEmp />} />
             <Route path="/RechercherEmployes" element={<RechercherEmp />} />
@@ -79,13 +78,13 @@ const App = () => {
         {role === "USER" && (
           <>
             <Route path="/" element={<Accueil />} />
-            <Route path="/login" element={<Login />} />
             <Route path="/Assurance" element={<Assurances />} />
             <Route path="/GestionConges" element={<GestionCongés />} />
             <Route path="/GestionPrets" element={<GestionPrêts />} />
             <Route path="/Profil" element={<Profil />} />
             <Route path="/AjoutDemandeConges" element={<AjoutDemandeConges />} />
             <Route path="/ModifierProfil" element={<ModifierProfil />} />
+            <Route path="/ModifierConge" element={<ModifierConge />} />
             <Route path="/*" element={<Accueil />} />
           </>
         )}

@@ -39,76 +39,23 @@ const GestionEmpAdmin = () => {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>Domenic</td>
-                        <td>88,110</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <NavLink to="/ModifierEmployes" title="Modifier">
                                 <i class="material-icons">&#xE8B8;</i>
                             </NavLink>
-                            <a href="/SupprimerEmployes" className="delete" title="Delete"><i class="material-icons">&#xE5C9;</i></a></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Domenic</td>
-                        <td>88,110</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>
-                            <NavLink to="/ModifierEmployes" title="Modifier">
-                                <i class="material-icons">&#xE8B8;</i>
-                            </NavLink>
-                            <a href="/SupprimerEmployes" className="delete" title="Delete"><i class="material-icons">&#xE5C9;</i></a></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Domenic</td>
-                        <td>88,110</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>
-                            <NavLink to="/ModifierEmployes" title="Modifier">
-                                <i class="material-icons">&#xE8B8;</i>
-                            </NavLink>
-                            <a href="/SupprimerEmployes" className="delete" title="Delete"><i class="material-icons">&#xE5C9;</i></a></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Domenic</td>
-                        <td>88,110</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>dcode</td>
-                        <td>
-                            <NavLink to="/ModifierEmployes" title="Modifier">
-                                <i class="material-icons">&#xE8B8;</i>
-                            </NavLink>
-                            <a href="/SupprimerEmployes" className="delete" title="Delete"><i class="material-icons">&#xE5C9;</i></a></td>
+                            <a href="/SupprimerEmployes" className="delete" title="Delete"><i class="material-icons">&#xE5C9;</i></a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

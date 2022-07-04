@@ -57,13 +57,12 @@ const Accueil = () => {
           ></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
         </ol>
         <div className="carousel-inner">
           <div className="carousel-item  active">
             <img
               className="d-block w-100"
-              src="./caroussel-1.jpg"
+              src="./caroussel-4.jpg"
               alt="First slide"
             />
           </div>
@@ -79,13 +78,6 @@ const Accueil = () => {
               className="d-block w-100"
               src="./caroussel-3.jpg"
               alt="Third slide"
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              className="d-block w-100"
-              src="./caroussel-4.jpg"
-              alt="fourth slide"
             />
           </div>
         </div>

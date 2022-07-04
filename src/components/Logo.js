@@ -72,7 +72,6 @@ const Logo = () => {
                 </span>
               </>
             )}
-
             <span onClick={logout}>
               <i class="fa fa-arrow-right-from-bracket"></i>
             </span>

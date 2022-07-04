@@ -17,7 +17,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 10px;
-    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    background: linear-gradient(135deg, #000080, #9b59b6);
 } */
 
 .containerP {
@@ -45,7 +45,7 @@ body {
     height: 3px;
     width: 30px;
     border-radius: 5px;
-    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    background: linear-gradient(135deg, #000080, #a9a9a9);
 }
 
 .content .form .user-details {
@@ -64,7 +64,7 @@ body {
 .form .output-box span.details {
     font-weight: 500;
     margin-bottom: 5px;
-    border-bottom: 3px solid #9b59b6;
+    border-bottom: 3px solid #a9a9a9;
     padding-right: 5px;
     font-size: larger;
 }
@@ -72,7 +72,7 @@ body {
 .form .output-box span.output {
     font-weight: 500;
     margin-bottom: 5px;
-    border-bottom: 3px solid #71b7e6;
+    border-bottom: 3px solid #000080;
     padding-left: 5px;
     font-size: x-large;
 
@@ -91,7 +91,7 @@ body {
 
 .user-details .output-box .output:focus,
 .user-details .output-box .output:valid {
-    border-color: #9b59b6;
+    border-color: #a9a9a9;
 }
 
 .form .gender-details .gender-title {

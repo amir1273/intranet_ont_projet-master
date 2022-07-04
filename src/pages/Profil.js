@@ -19,7 +19,7 @@ const Profil = () => {
             <Logo />
             <h1>Profil</h1>
             <div className="containerP">
-              <div className="title">Profile Employé : </div>
+              <div className="title" >Profil Employé : <span Style="text-transform: uppercase;">{user.nomComplet}</span></div>
               <div className="content">
                 <div class="profile-pic">
                   <img

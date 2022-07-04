@@ -13,7 +13,7 @@
 }
 
 .content-table thead tr {
-    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    background: linear-gradient(135deg, #000080, #a9a9a9);
     color: #ffffff;
     text-align: left;
     font-weight: bold;
@@ -21,7 +21,7 @@
 
 .content-table thead tr:hover {
     /* transform: scale(0.99); */
-    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+    background: linear-gradient(-135deg, #000080, #a9a9a9);
 }
 
 .content-table th,
@@ -30,7 +30,7 @@
 }
 
 .content-table tbody tr {
-    border-bottom: 1px solid #71b7e6;
+    border-bottom: 1px solid #000080;
 }
 
 .content-table tbody tr:nth-of-type(even) {
@@ -38,7 +38,7 @@
 }
 
 .content-table tbody tr:last-of-type {
-    border-bottom: 2px solid #9b59b6;
+    border-bottom: 2px solid #a9a9a9;
 }
 
 .content-table tbody tr.active-row {
@@ -69,13 +69,13 @@
 }
 
 .buttonB {
-    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    background: linear-gradient(135deg, #000080, #a9a9a9);
     color: #fff;
 }
 
 
 .buttonB:hover {
     /* transform: scale(0.99); */
-    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+    background: linear-gradient(-135deg, #000080, #a9a9a9);
     color: #fff;
 }

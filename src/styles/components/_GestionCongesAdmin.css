@@ -13,7 +13,7 @@
 }
 
 .content-tableC thead tr {
-    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    background: linear-gradient(135deg, #a9a9a9, #000080);
     color: #ffffff;
     text-align: left;
     font-weight: bold;
@@ -21,7 +21,7 @@
 
 .content-tableC thead tr:hover {
     /* transform: scale(0.99); */
-    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+    background: linear-gradient(-135deg, #a9a9a9, #000080);
 }
 
 .content-tableC th,
@@ -30,7 +30,7 @@
 }
 
 .content-tableC tbody tr {
-    border-bottom: 1px solid #71b7e6;
+    border-bottom: 1px solid #000080;
 }
 
 .content-tableC tbody tr:nth-of-type(even) {
@@ -38,10 +38,10 @@
 }
 
 .content-tableC tbody tr:last-of-type {
-    border-bottom: 2px solid #9b59b6;
+    border-bottom: 2px solid #a9a9a9;
 }
 
 .content-tableC tbody tr.active-row {
     font-weight: bold;
-    color: #009879;
+    color: #000080;
 }

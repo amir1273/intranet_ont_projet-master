@@ -40,37 +40,21 @@ const Navigation = () => {
     return (
         <div className="navigation">
             <ul>
-                {role === "USER" ? (
-                    <>
-                        <NavLink
-                            to="/"
-                            className={(nav) => (nav.isActive ? "nav-active" : "")}
-                        >
-                            <li>Accueil</li>
-                        </NavLink>
-                        <NavLink
-                            to="/GestionConges"
-                            className={(nav) => (nav.isActive ? "nav-active" : "")}
-                        >
-                            <li>Gestion des Congés</li>
-                        </NavLink>
-                        <NavLink
-                            to="/GestionPrets"
-                            className={(nav) => (nav.isActive ? "nav-active" : "")}
-                        >
-                            <li>Gestion des Prêts</li>
-                        </NavLink>
-                    </>
-                ) : (
-                    <>
-                        <NavLink
-                            to="/dashboard"
-                            className={(nav) => (nav.isActive ? "nav-active" : "")}
-                        >
-                            <li>Administrateur</li>
-                        </NavLink>
-                    </>
-                )}
+                <NavLink
+                    to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                    <li>Accueil</li>
+                </NavLink>
+                <NavLink
+                    to="/GestionConges"
+                    className={(nav) => (nav.isActive ? "nav-active" : "")}
+                >
+                    <li>Gestion des Congés</li>
+                </NavLink>
+                <NavLink
+                    to="/GestionPrets"
+                    className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                    <li>Gestion des Prêts</li>
+                </NavLink>
             </ul>
         </div>
     );
