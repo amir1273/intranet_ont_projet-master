@@ -45,7 +45,6 @@ const Logo = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("role");
     window.location.reload(false);
-
     navigate("/");
 
   };
