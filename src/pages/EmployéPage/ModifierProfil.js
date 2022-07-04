@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Logo from '../components/Logo';
+import Logo from '../../components/Logo';
 
 const ModifierProfil = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));

@@ -44,16 +44,18 @@ const Logo = () => {
     localStorage.removeItem("username");
     localStorage.removeItem("user");
     localStorage.removeItem("role");
-    navigate("/login");
+    window.location.reload(false);
+
+    navigate("/");
 
   };
   return (
     <div>
       <div className="logo">
-        <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-          <img src="./logoOnt.jpg" alt="logo react" />
+        <NavLink to="/Accueil" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+          <img title="ONT" src="./logoOnt.jpg" alt="logo react" />
         </NavLink>
-        <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+        <NavLink to="/Accueil" className={(nav) => (nav.isActive ? "nav-active" : "")}>
           <h4>Office National de la Télédiffusion</h4>
         </NavLink>
         <div>
@@ -61,19 +63,19 @@ const Logo = () => {
             {role === "USER" && (
               <>
                 <span>
-                  <i class="fa fa-bell"></i>
+                  <i title="Notification" class="fa fa-bell"></i>
                 </span>
                 <span>
                   <NavLink
                     to="/Profil"
                     className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                    <i class="fa fa-user"></i>
+                    <i title="Profil" class="fa fa-user"></i>
                   </NavLink>
                 </span>
               </>
             )}
             <span onClick={logout}>
-              <i class="fa fa-arrow-right-from-bracket"></i>
+              <i title="déconnexion" class="fa fa-arrow-right-from-bracket"></i>
             </span>
           </div>
         </div>

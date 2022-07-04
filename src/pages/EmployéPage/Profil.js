@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import Logo from "../components/Logo";
-import "../styles/components/_profile.css";
+import Logo from "../../components/Logo";
+import "../../styles/components/_profile.css";
 const Profil = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   useEffect(() => {

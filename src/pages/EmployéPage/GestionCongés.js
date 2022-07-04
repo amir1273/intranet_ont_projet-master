@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Logo from '../components/Logo';
-import Navigation from '../components/Navigation';
+import Logo from '../../components/Logo';
+import Navigation from '../../components/Navigation';
 
 const GestionCongés = () => {
     return (

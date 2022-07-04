@@ -16,7 +16,7 @@ const Login = () => {
     const t = localStorage.getItem("token");
     setToken(t);
     if (t) {
-      navigate("/");
+      navigate("/Accueil");
     }
     return () => { };
   }, [token]);
@@ -40,11 +40,13 @@ const Login = () => {
         localStorage.setItem("token", data.access_token);
         localStorage.setItem("username", username);
         setToken(data.access_token);
-        navigate("/");
+        window.location.reload(false);
+        navigate("/Accueil");
       })
       .catch((er) => {
         setError(true);
         console.log("no data sorry ", er);
+        navigate("/")
       });
   };
 

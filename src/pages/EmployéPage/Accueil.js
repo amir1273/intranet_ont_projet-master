@@ -1,8 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Logo from "../components/Logo";
-import { useNavigate } from "react-router";
-import Navigation from "../components/Navigation";
+import Logo from "../../components/Logo";
+import Navigation from "../../components/Navigation";
 
 const Accueil = () => {
 
