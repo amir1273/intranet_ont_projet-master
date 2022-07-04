@@ -31,13 +31,13 @@ const Profil = () => {
                 <div className="form">
                   <div className="user-details">
                     <div className="output-box">
-                      <span className="details">Matricule Employé :</span>
+                      <span className="details">Matricule Employé </span>
                       <span className="output" name="matricule">
                         {user.matricule}
                       </span>
                     </div>
                     <div className="output-box">
-                      <span className="details">Nom et Prénom :</span>
+                      <span className="details">Nom et Prénom </span>
                       <span className="output" name="nomComplet">
                         {user.nomComplet}
                       </span>
@@ -55,43 +55,43 @@ const Profil = () => {
                       </span>
                     </div>
                     <div className="output-box">
-                      <span className="details">Numéro d'Assurance :</span>
+                      <span className="details">Numéro d'Assurance </span>
                       <span className="output" name="numAssurance">
                         {user.numAssurance}
                       </span>
                     </div>
                     <div className="output-box">
-                      <span className="details">Date de Naissance :</span>
+                      <span className="details">Date de Naissance </span>
                       <span className="output" name="dateNaissance">
                         {user.dateDeNaissance}
                       </span>
                     </div>
                     <div className="output-box">
-                      <span className="details">Date d'Embauche :</span>
+                      <span className="details">Date d'Embauche </span>
                       <span className="output" name="matricule">
                         {user.dateEmbauche}
                       </span>
                     </div>
                     <div className="output-box">
-                      <span className="details">Fonction :</span>
+                      <span className="details">Fonction </span>
                       <span className="output" name="fonction">
                         {user.fonction}
                       </span>
                     </div>
                     <div className="output-box">
-                      <span className="details">Solde Congé :</span>
+                      <span className="details">Solde Congé </span>
                       <span className="output" name="soldeConge">
                         {user.soldeConge}
                       </span>
                     </div>
                     <div className="output-box">
-                      <span className="details">Genre :</span>
+                      <span className="details">Genre </span>
                       <span className="output" name="genre">
                         {user.genre}
                       </span>
                     </div>
-                    <div className="output-box">
-                      <span className="details">Numéro de Téléphone :</span>
+                    <div className="input-box">
+                      <span className="details">Numéro de Téléphone </span>
                       <span className="output" name="genre">
                         99999999
                       </span>
