@@ -1,9 +1,38 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from '../../components/Logo';
 import NavigationAdmin from '../../components/NavigationAdmin';
 import '../../styles/components/_GestionEmpAdmin.css'
 const GestionEmpAdmin = () => {
+    const [employees, setEmployees] = useState([])
+    const [search, setSearch] = useState("")
+    const [filter, setFilter] = useState([])
+    useEffect(() => {
+        getemployees();
+        return () => {
+
+        }
+    }, [])
+
+    const getemployees = () => {
+        axios
+            .get(
+                "http://localhost:8080/api/employees",
+                { Authorization: `Bearer ${localStorage.getItem("token")}` }
+            )
+            .then((r) => {
+                console.log("employees ", r.data);
+                setEmployees(r.data)
+                setFilter(employees)
+
+            })
+            .catch((err) => console.log(err));
+    };
+    const searchEmployee = () => {
+        setFilter(employees.filter((e) => e.matricule.toUpperCase().includes(search.toUpperCase())))
+
+    }
     return (
         <div>
             <Logo />
@@ -12,8 +41,16 @@ const GestionEmpAdmin = () => {
                 <NavLink to="/AjoutEmployes">
                     <input className="buttonB" type="button" value="Ajouter un Employés" />
                 </NavLink>
-                <input className="search" type="search" id="site-search" name="q" />
-                <input className="buttonB" type="button" value="Rechercher un Employé" />
+                <input className="search" type="search" id="site-search" name="q" value={search} onChange={(e) => {
+                    setSearch(e.target.value)
+                    setFilter(employees.filter((e) => e.matricule.toUpperCase().includes(search.toUpperCase())))
+
+                }}
+
+                />
+                <input className="buttonB" type="button" value="Rechercher un Employé"
+                    onClick={searchEmployee}
+                />
             </div>
 
             {/* <div className="button">
@@ -38,25 +75,41 @@ const GestionEmpAdmin = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <NavLink to="/ModifierEmployes" title="Modifier">
-                                <i class="material-icons">&#xE8B8;</i>
-                            </NavLink>
-                            <a href="/SupprimerEmployes" className="delete" title="Delete"><i class="material-icons">&#xE5C9;</i></a>
-                        </td>
-                    </tr>
+                    {
+                        filter?.length === 0 ? <>
+                            <p>pas d'employé trouvé</p>
+                        </>
+                            :
+                            (
+                                filter.map((e, index) => {
+
+                                    return e.account.roles[0].name === 'USER' && <>{
+
+                                        <tr key={e.id}>
+                                            <td>{index}</td>
+                                            <td>{e.nomComplet}</td>
+                                            <td>{e.matricule}</td>
+                                            <td>{e.cin}</td>
+                                            <td>{e.cnrps}</td>
+                                            <td>{e.numAssurance}</td>
+                                            <td>{e.dateDeNaissance}</td>
+                                            <td>{e.dateEmbauche}</td>
+                                            <td>{e.soldeConge}</td>
+                                            <td>{e.fonction}</td>
+                                            <td>{e.phone}</td>
+                                            <td>
+                                                <NavLink to="/ModifierEmployes" title="Modifier">
+                                                    <i class="material-icons">&#xE8B8;</i>
+                                                </NavLink>
+                                                <a href="/SupprimerEmployes" className="delete" title="Delete"><i class="material-icons">&#xE5C9;</i></a>
+                                            </td>
+                                        </tr>}</>
+                                })
+
+
+                            )
+                    }
+
                 </tbody>
             </table>
         </div>
