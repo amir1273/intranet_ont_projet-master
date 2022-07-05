@@ -43,13 +43,13 @@ const Profil = () => {
                       </span>
                     </div>
                     <div className="output-box">
-                      <span className="details">CIN :</span>
+                      <span className="details">CIN </span>
                       <span className="output" name="cin">
                         {user.cin}
                       </span>
                     </div>
                     <div className="output-box">
-                      <span className="details">CNRPS :</span>
+                      <span className="details">CNRPS </span>
                       <span className="output" name="cnrps">
                         {user.cnrps}
                       </span>
@@ -90,7 +90,7 @@ const Profil = () => {
                         {user.genre}
                       </span>
                     </div>
-                    <div className="input-box">
+                    <div className="output-box">
                       <span className="details">Numéro de Téléphone </span>
                       <span className="output" name="genre">
                         99999999
