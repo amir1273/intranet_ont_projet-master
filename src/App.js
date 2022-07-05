@@ -18,50 +18,41 @@ import AjoutDemandeConges from "./pages/EmployéPage/AjoutDemandeConges";
 import ModifierProfil from "./pages/EmployéPage/ModifierProfil";
 import ModifierConge from "./pages/EmployéPage/ModifierConge";
 import Dashboard from "./pages/AdminPages/Dashboard";
-import axios from "axios";
-// import axios from 'axios';
+import { UserProvider, useUpdateUser, useUser } from "./context/UserContext";
 
 const App = () => {
-  const [username, setUsername] = useState(localStorage.getItem("username"));
-  const [token, setToken] = useState(localStorage.getItem("token"))
-  const [user, setUser] = useState("");
-  const [role, setRole] = useState("");
+  const [userAuth, setUserAuth] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
+  const user = useUser();
+  const updateUser = useUpdateUser();
+  // const navigate = useNavigate();
   useEffect(() => {
-    getUserInfo()
-
-    return () => {
-
-    }
-  }, [token, username, role])
-
-  const getUserInfo = () => {
-    const url = `http://localhost:8080/api/user/info/${username}`;
-    let options = {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      url,
-    };
-    axios(options)
-      .then(({ data }) => {
-        console.log(data);
-        setUser(data);
-        setRole(data.account.roles[0].name);
-        console.log("role: ", role);
-        localStorage.setItem("user", JSON.stringify(data));
-        localStorage.setItem("role", role);
-      })
-      .catch((er) => {
-        console.log("no data sorry ", er);
-      });
-  }
+    setUserAuth(JSON.parse(localStorage.getItem("user")));
+    return () => {};
+  }, [user]);
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        {role === "ADMIN" && (
-          <>
+    <UserProvider value={{}}>
+      <BrowserRouter>
+        {userAuth?.account.roles[0].name === "USER" ? (
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Accueil />} />
+            <Route path="/GestionConges" element={<GestionCongés />} />
+            <Route path="/GestionPrets" element={<GestionPrêts />} />
+            <Route path="/Profil" element={<Profil />} />
+            <Route
+              path="/AjoutDemandeConges"
+              element={<AjoutDemandeConges />}
+            />
+            <Route path="/ModifierProfil" element={<ModifierProfil />} />
+            <Route path="/ModifierConge" element={<ModifierConge />} />
+            <Route path="/*" element={<Accueil />} />
+          </Routes>
+        ) : userAuth?.account.roles[0].name === "ADMIN" ? (
+          <Routes>
+            <Route path="/login" element={<Login />} />
+
             <Route path="/" element={<Dashboard />} />
             <Route path="/*" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
@@ -69,25 +60,20 @@ const App = () => {
             <Route path="/ModifierEmployes" element={<ModifierEmp />} />
             <Route path="/RechercherEmployes" element={<RechercherEmp />} />
             <Route path="/SupprimerEmployes" element={<SupprimerEmp />} />
-            <Route path="/GestionCongesAdmin" element={<GestionCongesAdmin />} />
+            <Route
+              path="/GestionCongesAdmin"
+              element={<GestionCongesAdmin />}
+            />
             <Route path="/GestionEmpAdmin" element={<GestionEmpAdmin />} />
             <Route path="/GestionPretsAdmin" element={<GestionPretsAdmin />} />
-          </>
+          </Routes>
+        ) : (
+          <Routes>
+            <Route path="/login" element={<Login />} />
+          </Routes>
         )}
-        {role === "USER" && (
-          <>
-            <Route path="/" element={<Accueil />} />
-            <Route path="/GestionConges" element={<GestionCongés />} />
-            <Route path="/GestionPrets" element={<GestionPrêts />} />
-            <Route path="/Profil" element={<Profil />} />
-            <Route path="/AjoutDemandeConges" element={<AjoutDemandeConges />} />
-            <Route path="/ModifierProfil" element={<ModifierProfil />} />
-            <Route path="/ModifierConge" element={<ModifierConge />} />
-            <Route path="/*" element={<Accueil />} />
-          </>
-        )}
-      </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
+    </UserProvider>
   );
 };
 export default App;
