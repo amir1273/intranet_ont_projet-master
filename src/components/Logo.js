@@ -14,7 +14,7 @@ const Logo = () => {
   console.log("context", user);
   useEffect(() => {
     setAuth(JSON.parse(localStorage.getItem("user")));
-    return () => {};
+    return () => { };
   }, [user]);
 
   const logout = () => {
@@ -56,7 +56,7 @@ const Logo = () => {
                 </span>
                 <span onClick={logout}>
                   <i
-                    title="déconnexion"
+                    title="Déconnexion"
                     class="fa fa-arrow-right-from-bracket"
                   ></i>
                 </span>
