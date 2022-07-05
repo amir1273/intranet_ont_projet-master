@@ -2,25 +2,25 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import "../styles/components/_Login.css";
+import { useUpdateUser, useUser } from "../context/UserContext";
+
 import qs from "qs";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-
   const [token, setToken] = useState(null);
   const [error, setError] = useState(false);
-
   // const user = { username, password }
   const navigate = useNavigate();
-
+  const updateUser = useUpdateUser();
+  const user = useUser();
   useEffect(() => {
     const t = localStorage.getItem("token");
     setToken(t);
     if (t) {
       navigate("/");
     }
-    return () => { };
+    return () => {};
   }, [token]);
 
   const handleLogin = (e) => {
@@ -41,14 +41,31 @@ const Login = () => {
         console.log(data);
         localStorage.setItem("token", data.access_token);
         localStorage.setItem("username", username);
+
         setToken(data.access_token);
-        window.location.reload(false);
+        getUserInfo();
         navigate("/");
       })
       .catch((er) => {
         setError(true);
         console.log("no data sorry ", er);
       });
+  };
+  const getUserInfo = () => {
+    axios
+      .get(
+        `http://localhost:8080/api/user/info/${localStorage.getItem(
+          "username"
+        )}`,
+        { Authorization: `Bearer ${localStorage.getItem("token")}` }
+      )
+      .then((r) => {
+        localStorage.setItem("user", JSON.stringify(r.data));
+        updateUser(r.data);
+        console.log("r.data ?", r.data);
+        console.log("props updated ?", user);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -95,7 +112,7 @@ const Login = () => {
               type="submit"
               value="Se connecter"
               onClick={handleLogin}
-            // onClick={() => navigate("/")}
+              // onClick={() => navigate("/")}
             />
           </div>
         </form>
