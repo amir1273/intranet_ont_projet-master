@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Alert } from 'bootstrap';
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from '../../components/Logo';
@@ -108,7 +109,9 @@ const GestionEmpAdmin = () => {
                                             <td>{e.fonction}</td>
                                             <td>{e.phone}</td>
                                             <td>
-                                                <NavLink to="/ModifierEmployes" title="Modifier">
+                                                <NavLink to="/ModifierEmployes"
+                                                    state={{ employee: e }}
+                                                    title="Modifier">
                                                     <i class="material-icons">&#xE8B8;</i>
                                                 </NavLink>
                                                 <span className="delete" title="Delete" onClick={() => {
@@ -119,7 +122,6 @@ const GestionEmpAdmin = () => {
                                                         )
                                                         .then((r) => {
                                                             console.log("employee removed ", r.data);
-
                                                         })
                                                         .catch((err) => console.log(err));
                                                 }}><i class="material-icons">&#xE5C9;</i></span>
