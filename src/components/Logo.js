@@ -12,6 +12,10 @@ const Logo = () => {
   const user = useUser();
   const [u, setU] = useState(user);
   console.log("context", user);
+  useEffect(() => {
+    setAuth(JSON.parse(localStorage.getItem("user")));
+    return () => {};
+  }, [user]);
 
   const logout = () => {
     localStorage.removeItem("token");
