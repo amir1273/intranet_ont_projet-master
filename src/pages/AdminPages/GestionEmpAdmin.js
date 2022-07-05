@@ -7,13 +7,20 @@ import '../../styles/components/_GestionEmpAdmin.css'
 const GestionEmpAdmin = () => {
     const [employees, setEmployees] = useState([])
     const [search, setSearch] = useState("")
-    const [filter, setFilter] = useState([])
+    const [filter, setFilter] = useState(employees)
     useEffect(() => {
         getemployees();
         return () => {
 
         }
     }, [])
+    useEffect(() => {
+        if (search === "")
+            setFilter(employees)
+        return () => {
+
+        }
+    }, [search])
 
     const getemployees = () => {
         axios
@@ -33,18 +40,21 @@ const GestionEmpAdmin = () => {
         setFilter(employees.filter((e) => e.matricule.toUpperCase().includes(search.toUpperCase())))
 
     }
+
+
+
+
     return (
         <div>
             <Logo />
             <NavigationAdmin />
             <div className="button">
-                <NavLink to="/AjoutEmployes">
+                <NavLink to="/AjoutEmployes" onClick={() => setFilter(employees)}>
                     <input className="buttonB" type="button" value="Ajouter un Employés" />
                 </NavLink>
                 <input className="search" type="search" id="site-search" name="q" value={search} onChange={(e) => {
                     setSearch(e.target.value)
-                    setFilter(employees.filter((e) => e.matricule.toUpperCase().includes(search.toUpperCase())))
-
+                    // setFilter(employees.filter((e) => e.matricule.toUpperCase().includes(search.toUpperCase())))
                 }}
 
                 />
@@ -101,7 +111,18 @@ const GestionEmpAdmin = () => {
                                                 <NavLink to="/ModifierEmployes" title="Modifier">
                                                     <i class="material-icons">&#xE8B8;</i>
                                                 </NavLink>
-                                                <a href="/SupprimerEmployes" className="delete" title="Delete"><i class="material-icons">&#xE5C9;</i></a>
+                                                <span className="delete" title="Delete" onClick={() => {
+                                                    axios
+                                                        .post(
+                                                            "http://localhost:8080/api/user/delete", e,
+                                                            { Authorization: `Bearer ${localStorage.getItem("token")}` }
+                                                        )
+                                                        .then((r) => {
+                                                            console.log("employee removed ", r.data);
+
+                                                        })
+                                                        .catch((err) => console.log(err));
+                                                }}><i class="material-icons">&#xE5C9;</i></span>
                                             </td>
                                         </tr>}</>
                                 })
