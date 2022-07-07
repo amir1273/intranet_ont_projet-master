@@ -75,7 +75,11 @@ const GestionCongés = () => {
                     <td>{c.statut}</td>
 
                     <td>
-                      <NavLink to="/ModifierConge" title="Modifier">
+                      <NavLink
+                        to="/ModifierConge"
+                        state={{ conges: c }}
+                        title="Modifier"
+                      >
                         <i class="material-icons">&#xE8B8;</i>
                       </NavLink>
                       <span
