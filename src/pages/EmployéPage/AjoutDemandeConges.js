@@ -5,10 +5,11 @@ import Logo from "../../components/Logo";
 import Navigation from "../../components/Navigation";
 
 const AjoutDemandeConges = () => {
-  const [conges, setConges] = useState({});
   const [user, setUser] = useState({});
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
+  const [dateDebut, setdateDebut] = useState();
+  const [dateFin, setdateFin] = useState();
 
   const navigate = useNavigate();
 
@@ -20,30 +21,37 @@ const AjoutDemandeConges = () => {
 
   const addConge = (e) => {
     e.preventDefault();
+    let diff = Math.floor(
+      (Date.parse(dateFin) - Date.parse(dateDebut)) / 86400000
+    );
+
     axios
       .post(
         `http://localhost:8080/conges/add/${localStorage.getItem("username")}`,
-        conges,
+        {
+          dateDebut,
+          dateFin,
+          periode: diff,
+        },
         {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         }
       )
       .then((r) => {
-        setConges(r.data);
-        console.log("sucess", conges);
         setDone(true);
         navigate("/GestionConges");
       })
       .catch((err) => console.log(err));
   };
 
-  const handleAddConge = (e) => {
-    const value = e.target.value;
-    setConges({
-      ...conges,
-      [e.target.name]: value,
-    });
-  };
+  // const handleAddConge = (e) => {
+  //   const value = e.target.value;
+
+  //   setConges({
+  //     ...conges,
+  //     [e.target.name]: value,
+  //   });
+  // };
   return (
     <div>
       <Logo />
@@ -79,7 +87,8 @@ const AjoutDemandeConges = () => {
                   type="Date"
                   name="dateDebut"
                   required
-                  onChange={handleAddConge}
+                  onChange={(e) => setdateDebut(e.target.value)}
+                  value={dateDebut}
                   min={new Date().toISOString().split("T")[0]}
                 />
               </div>
@@ -89,11 +98,12 @@ const AjoutDemandeConges = () => {
                   type="Date"
                   name="dateFin"
                   required
-                  onChange={handleAddConge}
-                  disabled={conges.dateDebut === "" ? true : false}
+                  onChange={(e) => setdateFin(e.target.value)}
+                  value={dateFin}
+                  disabled={dateDebut === "" ? true : false}
                   min={
-                    conges.dateDebut
-                      ? new Date(conges.dateDebut).toISOString().split("T")[0]
+                    dateDebut
+                      ? new Date(dateDebut).toISOString().split("T")[0]
                       : ""
                   }
                 />
@@ -107,6 +117,18 @@ const AjoutDemandeConges = () => {
                   placeholder="Entrer le solde des congés"
                   disabled
                   value={user.soldeConge}
+                />
+              </div>
+
+              <div className="input-box">
+                <span className="details">période</span>
+                <input
+                  type="double"
+                  name="periode"
+                  disabled
+                  value={Math.floor(
+                    (Date.parse(dateFin) - Date.parse(dateDebut)) / 86400000
+                  )}
                 />
               </div>
             </div>

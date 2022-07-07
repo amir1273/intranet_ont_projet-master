@@ -72,6 +72,8 @@ const GestionCongés = () => {
                     <td>{c.dateDebut}</td>
                     <td>{c.dateFin}</td>
                     <td>{c.periode}</td>
+                    <td>{c.statut}</td>
+
                     <td>
                       <NavLink to="/ModifierConge" title="Modifier">
                         <i class="material-icons">&#xE8B8;</i>
