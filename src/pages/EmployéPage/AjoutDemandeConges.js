@@ -24,24 +24,28 @@ const AjoutDemandeConges = () => {
     let diff = Math.floor(
       (Date.parse(dateFin) - Date.parse(dateDebut)) / 86400000
     );
-
-    axios
-      .post(
-        `http://localhost:8080/conges/add/${localStorage.getItem("username")}`,
-        {
-          dateDebut,
-          dateFin,
-          periode: diff,
-        },
-        {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        }
-      )
-      .then((r) => {
-        setDone(true);
-        navigate("/GestionConges");
-      })
-      .catch((err) => console.log(err));
+    if (user.soldeConge < diff) setError("solde congé insuffisant!");
+    else {
+      axios
+        .post(
+          `http://localhost:8080/conges/add/${localStorage.getItem(
+            "username"
+          )}`,
+          {
+            dateDebut,
+            dateFin,
+            periode: diff,
+          },
+          {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          }
+        )
+        .then((r) => {
+          setError("something went wrong!");
+          navigate("/GestionConges");
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   // const handleAddConge = (e) => {
@@ -131,6 +135,11 @@ const AjoutDemandeConges = () => {
                   )}
                 />
               </div>
+              {error && (
+                <div className="mr-auto ml-auto">
+                  <span className="  text-danger">{error}</span>
+                </div>
+              )}
             </div>
             <div className="button">
               <input type="button" value="Enregistrement" onClick={addConge} />
