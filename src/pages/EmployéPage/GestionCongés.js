@@ -9,9 +9,17 @@ const GestionCongés = () => {
             <Logo />
             <Navigation />
             <h1>Gestion des Congés</h1>
+            <center>
+                <div className="buttonC w-50 ">
+                    <NavLink to="/AjoutDemandeConges" >
+                        <input className="buttonB" type="button" value="Déposer une demande de Congés" />
+                    </NavLink>
+                </div>
+            </center>
             <table className="content-tableC">
                 <thead>
                     <tr>
+                        <th>Rang</th>
                         <th>Nom et Prénom</th>
                         <th>Matricule</th>
                         <th>Date début</th>
@@ -30,6 +38,7 @@ const GestionCongés = () => {
                         <td></td>
                         <td></td>
                         <td></td>
+                        <td></td>
                         <td>
                             <NavLink to="/ModifierConge" title="Modifier">
                                 <i class="material-icons">&#xE8B8;</i>
@@ -38,14 +47,6 @@ const GestionCongés = () => {
                         </td>
                     </tr>
                 </tbody>
-                <tfoot>
-                    <div className="buttonC">
-                        <NavLink to="/AjoutDemandeConges" >
-                            <input className="buttonB" type="button" value="Déposer une demande de Congés" />
-                        </NavLink>
-                    </div>
-                </tfoot>
-
             </table>
 
         </div>
