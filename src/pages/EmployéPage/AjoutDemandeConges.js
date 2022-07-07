@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import Logo from "../../components/Logo";
 import Navigation from "../../components/Navigation";
 
@@ -7,6 +8,9 @@ const AjoutDemandeConges = () => {
   const [conges, setConges] = useState({});
   const [user, setUser] = useState({});
   const [done, setDone] = useState(false);
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
@@ -28,11 +32,11 @@ const AjoutDemandeConges = () => {
         setConges(r.data);
         console.log("sucess", conges);
         setDone(true);
+        navigate("/GestionConges");
       })
       .catch((err) => console.log(err));
   };
   const handleAddConge = (e) => {
-    console.log(conges);
     const value = e.target.value;
     setConges({
       ...conges,
@@ -75,6 +79,7 @@ const AjoutDemandeConges = () => {
                   name="dateDebut"
                   required
                   onChange={handleAddConge}
+                  min={new Date().toISOString().split("T")[0]}
                 />
               </div>
               <div className="input-box">
@@ -84,6 +89,12 @@ const AjoutDemandeConges = () => {
                   name="dateFin"
                   required
                   onChange={handleAddConge}
+                  disabled={conges.dateDebut === "" ? true : false}
+                  min={
+                    conges.dateDebut
+                      ? new Date(conges.dateDebut).toISOString().split("T")[0]
+                      : ""
+                  }
                 />
               </div>
 
