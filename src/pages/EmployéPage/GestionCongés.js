@@ -7,13 +7,14 @@ import Navigation from "../../components/Navigation";
 const GestionCongés = () => {
   const [conges, setConges] = useState([]);
   const [user, setUser] = useState({});
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
     getConges();
 
     return () => {};
-  }, []);
+  }, [refresh]);
 
   const getConges = () => {
     axios
@@ -75,13 +76,25 @@ const GestionCongés = () => {
                       <NavLink to="/ModifierConge" title="Modifier">
                         <i class="material-icons">&#xE8B8;</i>
                       </NavLink>
-                      <a
-                        href="/SupprimerEmployes"
+                      <span
                         className="delete"
                         title="Delete"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          axios
+                            .post("http://localhost:8080/conges/remove/", c, {
+                              Authorization: `Bearer ${localStorage.getItem(
+                                "token"
+                              )}`,
+                            })
+                            .then((r) => {
+                              setRefresh(!refresh);
+                            })
+                            .catch((err) => console.log(err));
+                        }}
                       >
                         <i class="material-icons">&#xE5C9;</i>
-                      </a>
+                      </span>
                     </td>
                   </tr>
                 );
