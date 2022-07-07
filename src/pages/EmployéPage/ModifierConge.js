@@ -11,22 +11,48 @@ const ModifierConge = () => {
   const { state } = location;
   const [user, setUser] = useState({});
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [error, setError] = useState(false);
-  const [dateDebut, setdateDebut] = useState();
-  const [dateFin, setdateFin] = useState();
+  const [error, setError] = useState("");
   const [conges, setConges] = useState({});
+
+  const [dateDebut, setdateDebut] = useState(conges.dateDebut);
+  const [dateFin, setdateFin] = useState(conges.dateFin);
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
     setConges(state.conges);
+    setdateDebut(conges.dateDebut);
+    setdateFin(conges.dateFin);
 
     return () => {};
   }, []);
 
   const update = (e) => {
     e.preventDefault();
-    setConges({ ...conges }, [dateDebut, dateFin]);
-    console.log("update");
+    let diff = Math.floor(
+      (Date.parse(dateFin) - Date.parse(dateDebut)) / 86400000
+    );
+    if (user.soldeConge < diff) setError("solde congé insuffisant!");
+    else {
+      axios
+        .post(
+          `http://localhost:8080/conges/add/${localStorage.getItem(
+            "username"
+          )}`,
+          {
+            dateDebut,
+            dateFin,
+            periode: diff,
+          },
+          {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          }
+        )
+        .then((r) => {
+          setError("something went wrong!");
+          navigate("/GestionConges");
+        })
+        .catch((err) => console.log(err));
+    }
   };
   return (
     <div>
@@ -65,6 +91,7 @@ const ModifierConge = () => {
                   name="datedebutConge"
                   required
                   value={dateDebut}
+                  min={new Date().toISOString().split("T")[0]}
                   onChange={(e) => setdateDebut(e.target.value)}
                 />
               </div>
@@ -76,6 +103,12 @@ const ModifierConge = () => {
                   required
                   value={dateFin}
                   onChange={(e) => setdateFin(e.target.value)}
+                  disabled={dateDebut === "" ? true : false}
+                  min={
+                    dateDebut
+                      ? new Date(dateDebut).toISOString().split("T")[0]
+                      : ""
+                  }
                 />
               </div>
 
@@ -86,9 +119,14 @@ const ModifierConge = () => {
                   name="soldeConge"
                   placeholder="Entrer le solde des congés"
                   disabled
-                  value={conges.employee.soldeConge}
+                  value={user.soldeConge}
                 />
               </div>
+              {error && (
+                <div className="mr-auto ml-auto">
+                  <span className="  text-danger">{error}</span>
+                </div>
+              )}
             </div>
             <div className="button">
               <input
