@@ -35,14 +35,8 @@ const ModifierConge = () => {
     else {
       axios
         .post(
-          `http://localhost:8080/conges/add/${localStorage.getItem(
-            "username"
-          )}`,
-          {
-            dateDebut,
-            dateFin,
-            periode: diff,
-          },
+          `http://localhost:8080/conge/update/${dateDebut}/${dateFin}`,
+          conges,
           {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           }
