@@ -1,44 +1,73 @@
-import React from 'react';
-import Logo from '../../components/Logo';
-import NavigationAdmin from '../../components/NavigationAdmin';
-import '../../styles/components/_GestionCongesAdmin.css'
-
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import Logo from "../../components/Logo";
+import NavigationAdmin from "../../components/NavigationAdmin";
+import "../../styles/components/_GestionCongesAdmin.css";
 
 const GestionCongesAdmin = () => {
-    return (
-        <div>
-            <Logo />
-            <NavigationAdmin />
-            <table className="content-tableC">
-                <thead>
-                    <tr>
-                        <th>Rang</th>
-                        <th>Nom et Prénom</th>
-                        <th>Matricule</th>
-                        <th>Date début</th>
-                        <th>Date Fin</th>
-                        <th>Période</th>
-                        <th>Décision</th>
+  const [conges, setConges] = useState([]);
+  const [user, setUser] = useState({});
+  const [refresh, setRefresh] = useState(false);
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href="#" className="Accept" title="Accepter"><i class="material-icons add_task">&#xf23a;</i></a>
-                            <a href="#" className="refu" title="Réfuser"><i class="material-icons">&#xE5C9;</i></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    );
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("user")));
+    getConges();
+
+    return () => {};
+  }, [refresh]);
+
+  const getConges = () => {
+    axios
+      .get("http://localhost:8080/conges/", {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      })
+      .then((r) => {
+        setConges(r.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  return (
+    <div>
+      <Logo />
+      <NavigationAdmin />
+      <table className="content-tableC">
+        <thead>
+          <tr>
+            <th>Rang</th>
+            <th>Nom et Prénom</th>
+            <th>Matricule</th>
+            <th>Date début</th>
+            <th>Date Fin</th>
+            <th>Période</th>
+            <th>Décision</th>
+          </tr>
+        </thead>
+        <tbody>
+          {conges.map((c, index) => {
+            return (
+              <tr>
+                <td>{index}</td>
+                <td>{user.nomComplet}</td>
+                <td>{user.matricule}</td>
+                <td>{c.dateDebut}</td>
+                <td>{c.dateFin}</td>
+                <td>{c.periode}</td>
+                <td>
+                  <span href="#" className="Accept" title="Accepter">
+                    <i class="material-icons add_task">&#xf23a;</i>
+                  </span>
+                  <span href="#" className="refu" title="Réfuser">
+                    <i class="material-icons">&#xE5C9;</i>
+                  </span>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default GestionCongesAdmin;
