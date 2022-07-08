@@ -34,6 +34,7 @@ const GestionCongesAdmin = () => {
       .then((r) => {
         alert("accepted");
         setRefresh(!refresh);
+        localStorage.setItem("notif_conge", c);
       })
       .catch((err) => console.log(err));
   };
