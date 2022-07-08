@@ -9,6 +9,7 @@ const GestionEmpAdmin = () => {
   const [employees, setEmployees] = useState([]);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState([]);
+  const [refresh, setRefresh] = useState(false)
   useEffect(() => {
     const getemployees = () => {
       axios
@@ -24,7 +25,7 @@ const GestionEmpAdmin = () => {
     };
     getemployees();
     return () => { };
-  }, []);
+  }, [refresh]);
 
   const searchEmployee = () => {
     setFilter(
@@ -131,6 +132,7 @@ const GestionEmpAdmin = () => {
                                 )
                                 .then((r) => {
                                   console.log("employee removed ", r.data);
+                                  setRefresh(!refresh)
                                 })
                                 .catch((err) => console.log(err));
                             }}
