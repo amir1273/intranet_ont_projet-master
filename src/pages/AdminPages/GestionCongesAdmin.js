@@ -26,7 +26,26 @@ const GestionCongesAdmin = () => {
       })
       .catch((err) => console.log(err));
   };
-
+  const acceptConge = (c) => {
+    axios
+      .get("http://localhost:8080/conges/accept", c, {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      })
+      .then((r) => {
+        alert("accepted");
+      })
+      .catch((err) => console.log(err));
+  };
+  const refusConge = (c) => {
+    axios
+      .get("http://localhost:8080/conges/refus", c, {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      })
+      .then((r) => {
+        alert("refusé");
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <div>
       <Logo />
@@ -48,16 +67,24 @@ const GestionCongesAdmin = () => {
             return (
               <tr>
                 <td>{index}</td>
-                <td>{user.nomComplet}</td>
-                <td>{user.matricule}</td>
+                <td>{c.employee.nomComplet}</td>
+                <td>{c.employee.matricule}</td>
                 <td>{c.dateDebut}</td>
                 <td>{c.dateFin}</td>
                 <td>{c.periode}</td>
                 <td>
-                  <span href="#" className="Accept" title="Accepter">
+                  <span
+                    className="Accept"
+                    title="Accepter"
+                    onClick={acceptConge(c)}
+                  >
                     <i class="material-icons add_task">&#xf23a;</i>
                   </span>
-                  <span href="#" className="refu" title="Réfuser">
+                  <span
+                    className="refu"
+                    title="Réfuser"
+                    onClick={refusConge(c)}
+                  >
                     <i class="material-icons">&#xE5C9;</i>
                   </span>
                 </td>
