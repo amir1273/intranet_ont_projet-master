@@ -23,7 +23,7 @@ const ModifierConge = () => {
     setdateDebut(conges.dateDebut);
     setdateFin(conges.dateFin);
 
-    return () => {};
+    return () => { };
   }, [conges]);
 
   const update = (e) => {
@@ -120,6 +120,17 @@ const ModifierConge = () => {
                   placeholder="Entrer le solde des congés"
                   disabled
                   value={user.soldeConge}
+                />
+              </div>
+              <div className="input-box">
+                <span className="details">période</span>
+                <input
+                  type="double"
+                  name="periode"
+                  disabled
+                  value={Math.floor(
+                    (Date.parse(dateFin) - Date.parse(dateDebut)) / 86400000
+                  )}
                 />
               </div>
               {error && (
