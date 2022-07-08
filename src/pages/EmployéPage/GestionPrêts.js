@@ -13,7 +13,7 @@ const GestionPrêts = () => {
     setUser(JSON.parse(localStorage.getItem("user")));
     getConges();
 
-    return () => { };
+    return () => {};
   }, [refresh]);
 
   const getConges = () => {
@@ -72,28 +72,36 @@ const GestionPrêts = () => {
                     <td>{c.statut}</td>
 
                     <td>
-                      <NavLink to="/ModifierPret" title="Modifier">
-                        <i class="material-icons">&#xE8B8;</i>
-                      </NavLink>
-                      <span
-                        className="delete"
-                        title="Delete"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          axios
-                            .post("http://localhost:8080/pret/remove/", c, {
-                              Authorization: `Bearer ${localStorage.getItem(
-                                "token"
-                              )}`,
-                            })
-                            .then((r) => {
-                              setRefresh(!refresh);
-                            })
-                            .catch((err) => console.log(err));
-                        }}
-                      >
-                        <i class="material-icons">&#xE5C9;</i>
-                      </span>
+                      {c.statut === "Encours" && (
+                        <>
+                          <NavLink
+                            to="/ModifierPret"
+                            state={{ pret: c }}
+                            title="Modifier"
+                          >
+                            <i class="material-icons">&#xE8B8;</i>
+                          </NavLink>
+                          <span
+                            className="delete"
+                            title="Delete"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              axios
+                                .post("http://localhost:8080/pret/remove/", c, {
+                                  Authorization: `Bearer ${localStorage.getItem(
+                                    "token"
+                                  )}`,
+                                })
+                                .then((r) => {
+                                  setRefresh(!refresh);
+                                })
+                                .catch((err) => console.log(err));
+                            }}
+                          >
+                            <i class="material-icons">&#xE5C9;</i>
+                          </span>{" "}
+                        </>
+                      )}
                     </td>
                   </tr>
                 );

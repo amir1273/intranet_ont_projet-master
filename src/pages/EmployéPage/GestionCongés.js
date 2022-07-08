@@ -75,32 +75,40 @@ const GestionCongés = () => {
                     <td>{c.statut}</td>
 
                     <td>
-                      <NavLink
-                        to="/ModifierConge"
-                        state={{ conges: c }}
-                        title="Modifier"
-                      >
-                        <i class="material-icons">&#xE8B8;</i>
-                      </NavLink>
-                      <span
-                        className="delete"
-                        title="Delete"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          axios
-                            .post("http://localhost:8080/conges/remove/", c, {
-                              Authorization: `Bearer ${localStorage.getItem(
-                                "token"
-                              )}`,
-                            })
-                            .then((r) => {
-                              setRefresh(!refresh);
-                            })
-                            .catch((err) => console.log(err));
-                        }}
-                      >
-                        <i class="material-icons">&#xE5C9;</i>
-                      </span>
+                      {c.statut === "Encours" && (
+                        <>
+                          <NavLink
+                            to="/ModifierConge"
+                            state={{ conges: c }}
+                            title="Modifier"
+                          >
+                            <i class="material-icons">&#xE8B8;</i>
+                          </NavLink>
+                          <span
+                            className="delete"
+                            title="Delete"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              axios
+                                .post(
+                                  "http://localhost:8080/conges/remove/",
+                                  c,
+                                  {
+                                    Authorization: `Bearer ${localStorage.getItem(
+                                      "token"
+                                    )}`,
+                                  }
+                                )
+                                .then((r) => {
+                                  setRefresh(!refresh);
+                                })
+                                .catch((err) => console.log(err));
+                            }}
+                          >
+                            <i class="material-icons">&#xE5C9;</i>
+                          </span>
+                        </>
+                      )}
                     </td>
                   </tr>
                 );

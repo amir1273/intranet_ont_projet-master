@@ -12,7 +12,7 @@ const ModifierConge = () => {
   const [user, setUser] = useState({});
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [error, setError] = useState("");
-  const [conges, setConges] = useState({});
+  const [conges, setConges] = useState(state.conges);
 
   const [dateDebut, setdateDebut] = useState(conges.dateDebut);
   const [dateFin, setdateFin] = useState(conges.dateFin);
@@ -23,7 +23,7 @@ const ModifierConge = () => {
     setdateDebut(conges.dateDebut);
     setdateFin(conges.dateFin);
 
-    return () => { };
+    return () => {};
   }, [conges]);
 
   const update = (e) => {
