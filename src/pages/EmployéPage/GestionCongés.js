@@ -65,7 +65,7 @@ const GestionCongés = () => {
             <>
               {conges.map((c, index) => {
                 return (
-                  <tr>
+                  <tr key={c.id}>
                     <td>{index}</td>
                     <td>{user.nomComplet}</td>
                     <td>{user.matricule}</td>

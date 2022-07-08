@@ -24,7 +24,7 @@ const ModifierConge = () => {
     setdateFin(conges.dateFin);
 
     return () => {};
-  }, []);
+  }, [conges]);
 
   const update = (e) => {
     e.preventDefault();
