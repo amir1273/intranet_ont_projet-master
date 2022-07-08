@@ -23,7 +23,7 @@ const GestionEmpAdmin = () => {
         .catch((err) => console.log(err));
     };
     getemployees();
-    return () => {};
+    return () => { };
   }, []);
 
   const searchEmployee = () => {
@@ -70,7 +70,7 @@ const GestionEmpAdmin = () => {
       <table className="content-table">
         <thead>
           <tr>
-            <th>Rank</th>
+            <th>Rang</th>
             <th>Nom et Prénom</th>
             <th>Matricule</th>
             <th>CIN</th>

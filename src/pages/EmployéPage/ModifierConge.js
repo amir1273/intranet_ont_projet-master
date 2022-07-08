@@ -23,7 +23,7 @@ const ModifierConge = () => {
     setdateDebut(conges.dateDebut);
     setdateFin(conges.dateFin);
 
-    return () => {};
+    return () => { };
   }, [conges]);
 
   const update = (e) => {

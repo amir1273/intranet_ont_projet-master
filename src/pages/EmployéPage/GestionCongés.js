@@ -13,7 +13,7 @@ const GestionCongés = () => {
     setUser(JSON.parse(localStorage.getItem("user")));
     getConges();
 
-    return () => {};
+    return () => { };
   }, [refresh]);
 
   const getConges = () => {
@@ -66,7 +66,7 @@ const GestionCongés = () => {
               {conges.map((c, index) => {
                 return (
                   <tr key={c.id}>
-                    <td>{index}</td>
+                    <td>{index + 1}</td>
                     <td>{user.nomComplet}</td>
                     <td>{user.matricule}</td>
                     <td>{c.dateDebut}</td>

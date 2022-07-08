@@ -13,7 +13,7 @@ const GestionPrêts = () => {
     setUser(JSON.parse(localStorage.getItem("user")));
     getConges();
 
-    return () => {};
+    return () => { };
   }, [refresh]);
 
   const getConges = () => {
@@ -63,7 +63,7 @@ const GestionPrêts = () => {
               {pret.map((c, index) => {
                 return (
                   <tr>
-                    <td>{index}</td>
+                    <td>{index + 1}</td>
                     <td>{user.matricule}</td>
 
                     <td>{user.nomComplet}</td>
