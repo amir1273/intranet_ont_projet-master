@@ -28,21 +28,23 @@ const GestionCongesAdmin = () => {
   };
   const acceptConge = (c) => {
     axios
-      .get("http://localhost:8080/conges/accept", c, {
+      .post("http://localhost:8080/conges/accept", c, {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       })
       .then((r) => {
         alert("accepted");
+        setRefresh(!refresh);
       })
       .catch((err) => console.log(err));
   };
   const refusConge = (c) => {
     axios
-      .get("http://localhost:8080/conges/refus", c, {
+      .post("http://localhost:8080/conges/refus", c, {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       })
       .then((r) => {
         alert("refusé");
+        setRefresh(!refresh);
       })
       .catch((err) => console.log(err));
   };
@@ -76,14 +78,18 @@ const GestionCongesAdmin = () => {
                   <span
                     className="Accept"
                     title="Accepter"
-                    onClick={acceptConge(c)}
+                    onClick={() => {
+                      acceptConge(c);
+                    }}
                   >
                     <i class="material-icons add_task">&#xf23a;</i>
                   </span>
                   <span
                     className="refu"
                     title="Réfuser"
-                    onClick={refusConge(c)}
+                    onClick={() => {
+                      refusConge(c);
+                    }}
                   >
                     <i class="material-icons">&#xE5C9;</i>
                   </span>
