@@ -4,6 +4,7 @@ import Logo from "../../components/Logo";
 import Navigation from "../../components/Navigation";
 import NavigationAdmin from "../../components/NavigationAdmin";
 import { useUpdateUser, useUser } from "../../context/UserContext";
+import Notification from "./Notification";
 
 const Accueil = () => {
 
@@ -35,6 +36,7 @@ const Accueil = () => {
                 data-slide-to="0"
                 className="active"
               ></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="0"></li>
               <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
               <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
             </ol>
@@ -91,11 +93,9 @@ const Accueil = () => {
           <div>
             <Logo />
             <NavigationAdmin />
-            <h1>Dashboard</h1>
+            <h1>Dashboard Admin</h1>
           </div>
         </>
-
-
       }
     </div>
   );

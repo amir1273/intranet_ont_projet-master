@@ -11,7 +11,7 @@ const GestionPretsAdmin = () => {
     setUser(JSON.parse(localStorage.getItem("user")));
     getPret();
 
-    return () => {};
+    return () => { };
   }, [refresh]);
 
   const getPret = () => {
@@ -65,7 +65,7 @@ const GestionPretsAdmin = () => {
         {pret.map((c, index) => {
           return (
             <tr>
-              <td>{index}</td>
+              <td>{index + 1}</td>
               <td>{c.employee.nomComplet}</td>
               <td>{c.employee.matricule}</td>
               <td>{c.montant}</td>

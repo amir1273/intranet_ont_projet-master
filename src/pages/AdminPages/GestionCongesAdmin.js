@@ -13,7 +13,7 @@ const GestionCongesAdmin = () => {
     setUser(JSON.parse(localStorage.getItem("user")));
     getConges();
 
-    return () => {};
+    return () => { };
   }, [refresh]);
 
   const getConges = () => {
@@ -69,7 +69,7 @@ const GestionCongesAdmin = () => {
           {conges.map((c, index) => {
             return (
               <tr>
-                <td>{index}</td>
+                <td>{index + 1}</td>
                 <td>{c.employee.nomComplet}</td>
                 <td>{c.employee.matricule}</td>
                 <td>{c.dateDebut}</td>

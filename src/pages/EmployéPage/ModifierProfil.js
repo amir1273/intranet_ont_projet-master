@@ -7,26 +7,35 @@ const ModifierProfil = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const [phone, setPhone] = useState();
   const navigate = useNavigate();
+  const [message, setMessage] = useState("")
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
+    setPhone(user.phone)
     console.log(user);
 
-    return () => {};
+    return () => { };
   }, []);
 
   const updateUser = () => {
-    axios
-      .post(`http://localhost:8080/user/update/${phone}`, user, {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      })
-      .then((r) => {
-        console.log("sucess", r);
-        //update user info
-        getUserInfo();
-        navigate("/profil");
-      })
-      .catch((err) => console.log(err));
+    if (phone.length == 8) {
+      axios
+        .post(`http://localhost:8080/user/update/${phone}`, user, {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        })
+        .then((r) => {
+          console.log("sucess", r);
+          //update user info
+          setMessage("votre numero a été modifié!");
+          getUserInfo();
+          // navigate("/profil");
+        })
+        .catch((err) => console.log(err));
+      setMessage("error!");
+    }
+    else {
+      setMessage('téléphone invalide')
+    }
   };
   const getUserInfo = () => {
     axios
@@ -38,6 +47,7 @@ const ModifierProfil = () => {
       )
       .then((r) => {
         localStorage.setItem("user", JSON.stringify(r.data));
+        setPhone(r.data.phone);
       })
       .catch((err) => console.log(err));
   };
@@ -125,13 +135,17 @@ const ModifierProfil = () => {
                   className="output"
                   type="text"
                   name="telephone"
-                  placeholder="99999999"
-                  value={user.phone}
+
+                  value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
               </div>
+
             </div>
           </div>
+          {<div className="text-center"><span className="text-danger">{message}</span></div>
+
+          }
           <div className="buttonC">
             <input
               className="buttonB"

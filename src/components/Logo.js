@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { useUpdateUser, useUser } from "../context/UserContext";
+import Notification from "../pages/EmployéPage/Notification";
 
 const Logo = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const Logo = () => {
   const updateUser = useUpdateUser();
   const user = useUser();
   const [u, setU] = useState(user);
-  console.log("context", user);
+  const [toggle, setToggle] = useState(false)
   useEffect(() => {
     setAuth(JSON.parse(localStorage.getItem("user")));
     return () => { };
@@ -44,7 +45,7 @@ const Logo = () => {
             {auth?.account.roles[0].name === "USER" ? (
               <>
                 <span>
-                  <i title="Notification" class="fa fa-bell"></i>
+                  <i title="Notification" class="fa fa-bell" onClick={() => setToggle(!toggle)}></i>
                 </span>
                 <span>
                   <NavLink
@@ -60,6 +61,12 @@ const Logo = () => {
                     class="fa fa-arrow-right-from-bracket"
                   ></i>
                 </span>
+
+
+                {
+                  toggle && <Notification />
+                }
+
               </>
             ) : auth?.account.roles[0].name === "ADMIN" ? (
               <>
@@ -74,8 +81,11 @@ const Logo = () => {
               <>loading ...</>
             )}
           </div>
+
         </div>
+
       </div>
+
     </div>
   );
 };
