@@ -20,7 +20,7 @@ const Login = () => {
     if (t) {
       navigate("/");
     }
-    return () => {};
+    return () => { };
   }, [token]);
 
   const handleLogin = (e) => {
@@ -91,19 +91,10 @@ const Login = () => {
             />
             <label>Mot de Passe</label>
           </div>
-          <div className="content">
-            <div className="checkbox">
-              <input type="checkbox" id="remember-me" />
-              <label for="remember-me">Remember me</label>
-            </div>
-            <div className="pass-link">
-              <a href="#">Forgot password?</a>
-            </div>
-          </div>
           {error && (
             <>
               <label className="pl-4  text-danger">
-                matricule ou mot de passe incorrect!
+                Matricule ou mot de passe incorrect!
               </label>
             </>
           )}
@@ -112,7 +103,7 @@ const Login = () => {
               type="submit"
               value="Se connecter"
               onClick={handleLogin}
-              // onClick={() => navigate("/")}
+            // onClick={() => navigate("/")}
             />
           </div>
         </form>

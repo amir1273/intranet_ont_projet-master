@@ -3,12 +3,13 @@ import { NavLink } from "react-router-dom";
 import Logo from "../../components/Logo";
 import "../../styles/components/_profile.css";
 const Profil = () => {
+  let URL = "../../../../Files-Upload/";
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
     console.log(user);
 
-    return () => {};
+    return () => { };
   }, []);
 
   return (
@@ -25,7 +26,7 @@ const Profil = () => {
               <div class="profile-pic">
                 <img
                   className="imgProfile"
-                  src="./logoOnt.jpg"
+                  src={`./${user.photo}`}
                   alt="imageProfil"
                   width={200}
                 />
@@ -105,7 +106,7 @@ const Profil = () => {
                   <input
                     className="buttonB"
                     type="button"
-                    value="Modifier Les données du profile"
+                    value="Modifier Les données du profil"
                   />
                 </NavLink>
               </div>

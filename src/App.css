@@ -50,7 +50,7 @@
 
 .carousel-item {
     opacity: 0;
-    transition-duration: .3s;
+    transition-duration: .1s;
     transition-property: opacity;
 }
 

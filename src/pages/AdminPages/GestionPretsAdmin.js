@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Logo from "../../components/Logo";
 import NavigationAdmin from "../../components/NavigationAdmin";
+
 const GestionPretsAdmin = () => {
   const [pret, setPret] = useState([]);
   const [user, setUser] = useState({});
@@ -32,8 +33,7 @@ const GestionPretsAdmin = () => {
       .then((r) => {
         alert("accepted");
         setRefresh(!refresh);
-
-        localStorage.setItem("notif_pret", JSON.stringify(c));
+        localStorage.setItem("notif_pret", c);
       })
       .catch((err) => console.log(err));
   };

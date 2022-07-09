@@ -68,23 +68,23 @@ const ModifierEmp = () => {
                         <div className="user-details">
                             <div className="input-box">
                                 <span className="details">Matricule Employé</span>
-                                <input type="text" name="matricule" placeholder="Entrer Le matricule de " required onChange={handleAddEmployee} />
+                                <input type="text" name="matricule" placeholder={state.employee.matricule} required onChange={handleAddEmployee} />
                             </div>
                             <div className="input-box">
                                 <span className="details">Nom et prénom</span>
-                                <input type="text" name='nomComplet' placeholder="Entrer Le nom complet de " required onChange={handleAddEmployee} />
+                                <input type="text" name='nomComplet' placeholder={state.employee.nomComplet} required onChange={handleAddEmployee} />
                             </div>
                             <div className="input-box">
                                 <span className="details">CIN</span>
-                                <input type="text" name='cin' placeholder="Entrer Le Numéro de la cin " required onChange={handleAddEmployee} />
+                                <input type="text" name='cin' placeholder={state.employee.cin} required onChange={handleAddEmployee} />
                             </div>
                             <div className="input-box">
                                 <span className="details">CNRPS</span>
-                                <input type="text" name='cnrps' placeholder="Entrer Le Numéro de la CNRPS " required onChange={handleAddEmployee} />
+                                <input type="text" name='cnrps' placeholder={state.employee.cnrps} required onChange={handleAddEmployee} />
                             </div>
                             <div className="input-box">
                                 <span className="details">Numéro d'assurance</span>
-                                <input type="text" name='numAssurance' placeholder="Entrer Le Numéro de l'assurance " required onChange={handleAddEmployee} />
+                                <input type="text" name='numAssurance' placeholder={state.employee.numAssurance} required onChange={handleAddEmployee} />
                             </div>
                             <div className="input-box">
                                 <span className="details">Fonction</span>
@@ -111,7 +111,7 @@ const ModifierEmp = () => {
 
                             <div className="input-box">
                                 <span className="details">Solde Congés</span>
-                                <input type="double" name='soldeConge' placeholder="Entrer le solde des congés " required onChange={handleAddEmployee} />
+                                <input type="double" name='soldeConge' placeholder={state.employee.soldeConge} required onChange={handleAddEmployee} />
                             </div>
                         </div>
                         <div className="gender-details">

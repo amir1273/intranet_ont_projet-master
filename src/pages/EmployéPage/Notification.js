@@ -34,7 +34,7 @@ const Notification = () => {
         <div className='container-fluid ' >
             {
                 notification?.length === 0 ?
-                    (<p> pas de notification!</p>)
+                    (<div className="card"><div className="card-header"><h6> Pas de notification!</h6></div></div>)
                     :
                     (<>
                         <div className="card">
@@ -49,9 +49,8 @@ const Notification = () => {
                                                 <div className="row ">
                                                     <h6>
                                                         {n.statut === "Accepté" ? <i class="fa fa-check text-success" aria-hidden="true"></i> : <i class="fa fa-times text-danger" aria-hidden="true"></i>
-
-
                                                         }
+                                                        {n.dateNotif}<br />
                                                         {n.note}
                                                     </h6>
                                                 </div>
