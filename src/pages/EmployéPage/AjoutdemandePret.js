@@ -15,7 +15,7 @@ const AjoutdemandePret = () => {
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
 
-    return () => {};
+    return () => { };
   }, []);
 
   const addPret = (e) => {
@@ -41,7 +41,7 @@ const AjoutdemandePret = () => {
       <Logo />
       <Navigation />
       <div className="container">
-        <div className="title">Ajouter une demande de prêt</div>
+        <div className="title">Déposer une demande de prêt</div>
         <div className="content">
           <form action="#">
             <div className="user-details">

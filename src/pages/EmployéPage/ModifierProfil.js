@@ -56,7 +56,7 @@ const ModifierProfil = () => {
       setMessage("error!");
     }
     else {
-      setMessage('téléphone invalide')
+      setMessage('Numéro de Téléphone invalide')
     }
     const formData = new FormData();
     formData.append("file", picture.pictureAsFile);
@@ -97,7 +97,7 @@ const ModifierProfil = () => {
       <Logo />
       <h1>Profil</h1>
       <div className="containerP">
-        <div className="title">Modifier Profil Employé : </div>
+        <div className="title">Modifier Profil Employé : <span Style="text-transform: uppercase;">{user.nomComplet}</span></div>
         <div className="content">
           <form enctype="multipart/form-data">
             <div class="profile-pic">
@@ -111,7 +111,7 @@ const ModifierProfil = () => {
                 name="file"
                 onChange={uploadPicture}
               />
-              <img src={picture.picturePreview} alt="imageProfil" width="200" />
+              <img src={picture.picturePreview} width="200" />
             </div>
             <div className="form">
               <div className="user-details">

@@ -16,7 +16,7 @@ const AjoutDemandeConges = () => {
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
 
-    return () => {};
+    return () => { };
   }, []);
 
   const addConge = (e) => {
@@ -61,7 +61,7 @@ const AjoutDemandeConges = () => {
       <Logo />
       <Navigation />
       <div className="container">
-        <div className="title">Ajouter une demande de congé</div>
+        <div className="title">Déposer une demande de congé</div>
         <div className="content">
           <form>
             <div className="user-details">
