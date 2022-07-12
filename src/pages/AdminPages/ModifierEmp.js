@@ -10,6 +10,7 @@ const ModifierEmp = () => {
     const location = useLocation();
     const { state } = location;
     const [employee, setEmployee] = useState({})
+    const [message, setMessage] = useState("")
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [error, setError] = useState(false);
 
@@ -51,6 +52,8 @@ const ModifierEmp = () => {
             .catch((er) => {
                 setError(true)
                 console.log("no data sorry ", er);
+                setMessage("Modification impossible !!! Vérifier les données saisies !!");
+
             });
     }
     return (
@@ -58,9 +61,6 @@ const ModifierEmp = () => {
             <Logo />
             <NavigationAdmin />
             <h1>Modifier Employés</h1>
-            {
-                error && <p>error</p>
-            }
             <div className="container">
                 <div className="title">Modifier les données d'un Employé</div>
                 <div className="content">
@@ -129,6 +129,8 @@ const ModifierEmp = () => {
                                 </label>
                             </div>
                         </div>
+                        {<div className="text-center"><span className="text-danger">{message}</span></div>
+                        }
                         <div className="button">
                             {/* <input type="submit" value="Enregistrement" onClick={(e) => { e.preventDefault(); console.log(employee) }} /> */}
                             <input type="submit" value="Enregistrement" onClick={addEmployee} />

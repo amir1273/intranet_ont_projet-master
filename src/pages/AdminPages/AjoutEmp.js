@@ -8,6 +8,7 @@ import '../../styles/components/_AjoutEmp.css'
 const AjoutEmp = () => {
     const [token, setToken] = useState(null);
     const [error, setError] = useState(false);
+    const [message, setMessage] = useState("")
     const [employee, setEmployee] = useState({
         "fonction": "TechnicienPrincipal"
     })
@@ -46,6 +47,8 @@ const AjoutEmp = () => {
             .catch((er) => {
                 setError(true);
                 console.log("no data sorry ", er);
+                setMessage("Vérifier les données saisies !!");
+
             });
     }
 
@@ -120,11 +123,10 @@ const AjoutEmp = () => {
                                     <span className="dot two"></span>
                                     <span className="gender">Femme</span>
                                 </label>
-                                {
-                                    error && <label>error</label>
-                                }
                             </div>
                         </div>
+                        {<div className="text-center"><span className="text-danger">{message}</span></div>
+                        }
                         <div className="button">
                             {/* <input type="submit" value="Enregistrement" onClick={(e) => { e.preventDefault(); console.log(employee) }} /> */}
                             <input type="submit" value="Enregistrement" onClick={addEmployee} />

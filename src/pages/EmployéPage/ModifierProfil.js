@@ -53,7 +53,7 @@ const ModifierProfil = () => {
           // navigate("/profil");
         })
         .catch((err) => console.log(err));
-      setMessage("error!");
+      setMessage("Modification n'est pas effectuée");
     }
     else {
       setMessage('Numéro de Téléphone invalide')
@@ -189,7 +189,6 @@ const ModifierProfil = () => {
               </div>
             </div>
             {<div className="text-center"><span className="text-danger">{message}</span></div>
-
             }
             <div className="buttonC">
               <input

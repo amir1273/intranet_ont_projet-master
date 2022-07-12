@@ -9,7 +9,7 @@ const AjoutdemandePret = () => {
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
   const [montant, setMontant] = useState();
-
+  const [message, setMessage] = useState("")
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,8 +33,11 @@ const AjoutdemandePret = () => {
       .then((r) => {
         setDone(true);
         navigate("/GestionPrets");
+
       })
       .catch((err) => console.log(err));
+    setMessage("Il faut saisir des chiffres");
+
   };
   return (
     <div>
@@ -77,6 +80,8 @@ const AjoutdemandePret = () => {
                 />
               </div>
             </div>
+            {<div className="text-center"><span className="text-danger">{message}</span></div>
+            }
             <div className="button">
               <input type="button" value="Enregistrement" onClick={addPret} />
             </div>
